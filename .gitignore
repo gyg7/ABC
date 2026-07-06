@@ -1,5 +1,4 @@
-# 忽略 atcoder 目录下的所有内容
-/atcoder/
-
 # 忽略根目录下任意两级目录中的 .exe 文件
 *.exe
+init.py
+headers.json
