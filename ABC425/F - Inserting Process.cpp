@@ -8,7 +8,7 @@ void add(int &x, int y) {
 	x += y;
 	if (x >= mod) x -= mod;
 }
-/*»ù´¡¹Ç¼Ü*/
+/*åŸºç¡€éª¨æž¶*/
 void pre() {
 	ios::sync_with_stdio(0);
 	cin.tie(0), cout.tie(0);

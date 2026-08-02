@@ -1,51 +1,50 @@
-#include <bits/stdc++.h>
-using namespace std;
-int cnt[30];
-int main() {
-	int t;
-	cin >> t;
-	while (t--) {
-		string s;
-		cin >> s;
-		int mx = 0, chs = 0, n = s.length();
-		for (auto ch : s) {
-
-			cnt[ch - 'a']++;
-			if (mx < cnt[ch - 'a']) {
-				mx = cnt[ch - 'a'];
-				chs = ch;
-			}
-		}
-		if (2 * mx > n + 1) {
-			cout << "No" << endl;
-		} else {
-			cout << "Yes" << endl;
-			for (int i = 0; i < n; i++) s[i] = '*';
-			for (int i = 0; 2 * i < n && i < mx; i++) {
-				s[2 * i] = chs;
-			}
-			cnt[chs - 'a'] = 0;
-			int cur = 0;
-			for (int i = 0; i < 26; i++) {
-				if (cnt[cur + i]) {
-					cur += i;
-					break;
-				}
-			}
-			for (int i = 0; i < n; i++) {
-				if (s[i] == '*') {
-					s[i] = cur + 'a';
-					cnt[cur]--;
-					for (int i = 1; i < 26; i++) {
-						if (cnt[(cur + i) % 26]) {
-							cur = (cur + i) % 26;
-							break;
-						}
-					}
-				}
-			}
-			cout << s << endl;
-		}
-
-	}
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+
+	int t;
+	cin >> t;
+	while (t--) {
+		string s;
+		cin >> s;
+		int n = s.length();
+
+		vector<int> cnt(26);
+		for (char ch : s) cnt[ch - 'a']++;
+
+		int mx = *max_element(cnt.begin(), cnt.end());
+		if (2 * mx > n + 1) {
+			cout << "No\n";
+			continue;
+		}
+
+		cout << "Yes\n";
+
+		// 最大堆: (次数, 字符)
+		priority_queue<pair<int, char>> pq;
+		for (int i = 0; i < 26; i++) {
+			if (cnt[i]) pq.push({cnt[i], 'a' + i});
+		}
+
+		string res;
+		pair<int, char> prev = {0, '#'};  // 上一次取出的（次数-1后的）
+
+		while (!pq.empty()) {
+			auto cur = pq.top();
+			pq.pop();
+			res += cur.second;
+			cur.first--;
+
+			// 把prev放回（如果还有剩余）
+			if (prev.first > 0) pq.push(prev);
+
+			prev = cur;  // 当前字符冷却一轮
+		}
+
+		cout << res << "\n";
+	}
+	return 0;
 }

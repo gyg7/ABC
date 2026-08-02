@@ -3,7 +3,7 @@ using namespace std;
 #define int long long
 const int N = 3e5 + 1;
 const int inf = 1e18;
-/*Ïß¶ÎÊ÷*/
+/*çº¿æ®µæ ‘*/
 struct tree {
 	int ls, rs, tag, minv, ps;
 #define ls tr[p].ls
@@ -64,7 +64,7 @@ int modify(son, int L, int R, int tv) {
 	return ret;
 }
 
-/*»ù±¾¹Ç¼Ü*/
+/*åŸºæœ¬éª¨æž¶*/
 
 void pre() {
 	ios::sync_with_stdio(0);

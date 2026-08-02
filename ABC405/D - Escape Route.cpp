@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int dx[4] = {-1, 0, 1, 0};  // ÉÏ¡¢×ó¡¢ÏÂ¡¢ÓÒ
+const int dx[4] = {-1, 0, 1, 0};  // ä¸Šã€å·¦ã€ä¸‹ã€å³
 const int dy[4] = {0, -1, 0, 1};
-const char ch[4] = {'v', '>', '^', '<'};  // ¶ÔÓ¦µÄ·½Ïò×Ö·û
+const char ch[4] = {'v', '>', '^', '<'};  // å¯¹åº”çš„æ–¹å‘å­—ç¬¦
 int h, w;
 char s[1002][1002];
 bool vis[1002][1002];
